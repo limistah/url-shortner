@@ -3,7 +3,7 @@ name: "Clone URL Shortener Github Actions"
 on:
   push:
 jobs:
-  bot:
+  deploy-url-shortener:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout limistah:url-shortner"
