@@ -16,6 +16,6 @@ jobs:
       - name: "Create .netrc for Heroku Auth"
         shell: bash
         run: |
-          echo "machine api.heroku.com \\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN\\nmachine git.heroku.com\\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN" > ~/.netrc && cat ~/.netrc
+          echo "machine api.heroku.com \n    login aleemisiaka@gmail.com\n    password $HEROKU_AUTH_TOKEN\nmachine git.heroku.com\n    login aleemisiaka@gmail.com\n    password $HEROKU_AUTH_TOKEN" > ~/.netrc && cat ~/.netrc
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
