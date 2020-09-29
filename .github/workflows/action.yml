@@ -14,6 +14,8 @@ jobs:
           repository: "limistah/url-shortner"
           ref: "master"
       - name: "Create .netrc for Heroku Auth"
-        run: echo "machine api.heroku.com \\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN\\nmachine git.heroku.com\\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN" > ~/.netrc && cat ~/.netrc
+        shell: bash
+        run: |
+          echo "machine api.heroku.com \\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN\\nmachine git.heroku.com\\n    login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN" > ~/.netrc && cat ~/.netrc
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
