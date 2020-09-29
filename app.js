@@ -53,5 +53,5 @@ app.get("/:code", function (req, res, next) {
 });
 
 app.listen(PORT, () => {
-  console.log(`Application is listening on ${PORT}`);
+  console.log(`"Application" is listening on ${PORT}`);
 });
