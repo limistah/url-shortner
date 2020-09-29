@@ -31,3 +31,7 @@ jobs:
         shell: "bash"
         run: |
           heroku git:remote --app aleem-urls
+      - name: "Push to heroku"
+        shell: "bash"
+        run: |
+          git push heroku
