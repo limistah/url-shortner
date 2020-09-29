@@ -12,7 +12,7 @@ jobs:
           # Repository name with owner. For example, actions/checkout
           # Default: ${{ github.repository }}
           repository: "limistah/url-shortner"
-          ref: "master"
+          ref: "workflow-init"
       - name: "Create .netrc for Heroku Auth"
         shell: bash
         run: |
