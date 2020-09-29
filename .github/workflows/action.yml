@@ -13,9 +13,8 @@ jobs:
           # Default: ${{ github.repository }}
           repository: "limistah/url-shortner"
           ref: "master"
-      - name: "Create .netrc for Heroku Auth"
-        shell: bash
-        run: |
-          echo "machine api.heroku.com\\n  login aleemisiaka@gmail.com\\n  password $HEROKU_AUTH_TOKEN\\nmachine git.heroku.com\\n  login aleemisiaka@gmail.com\\n    password $HEROKU_AUTH_TOKEN" > ~/.netrc && cat ~/.netrc
-        env:
-          HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+      - uses: akhileshns/heroku-deploy@v3.5.6 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_AUTH_TOKEN}}
+          heroku_app_name: "aleem-urls" #Must be unique in Heroku
+          heroku_email: "aleemisiaka.com"
