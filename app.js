@@ -17,7 +17,7 @@ app.use(cors({}));
 const PORT = process.env.PORT || 8899;
 
 app.get("/", (req, res, next) => {
-  return res.json({ status: "Online" });
+  return res.json({ status: "Online", date: new Date() });
 });
 
 app.post("/shorten", function (req, res, next) {
