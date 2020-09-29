@@ -27,3 +27,7 @@ jobs:
         env:
           EMAIL: aleemisiaka@gmail.com
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+      - name: "Add remote"
+        shell: "bash"
+        run: |
+          heroku git:remote --app aleem-urls
