@@ -1,7 +1,6 @@
 name: "Clone URL Shortener Github Actions"
 
 on:
-  push:
   schedule:
     - cron: "*/30 * * * *"
 jobs:
