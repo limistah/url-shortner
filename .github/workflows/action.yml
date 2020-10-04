@@ -16,7 +16,7 @@ jobs:
           # Default: ${{ github.repository }}
           repository: "limistah/url-shortner"
           ref: "master"
-      - name: "Create .netrc for Heroku Auth"
+      - name: "Deploy to heroku"
         uses: akhileshns/heroku-deploy@v3.5.7 # This is the action we are importing
         with: # It accepts some arguments to work, we can pass the argument using `with`
           heroku_api_key: ${{secrets.HEROKU_AUTH_TOKEN}} # This is the same as the auth key we generated earlier
