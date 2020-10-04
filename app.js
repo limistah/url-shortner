@@ -34,7 +34,7 @@ app.post("/shorten", function (req, res, next) {
     code,
     url,
   });
-  res.json(shortLink);
+  res.status(201).json(shortLink);
 });
 
 app.get("/:code", function (req, res, next) {
@@ -49,7 +49,7 @@ app.get("/:code", function (req, res, next) {
   (shortenedURL.visitCount = (shortenedURL.visitCount || 0) + 1),
     shortLinkDB.update(shortenedURL);
 
-  res.redirect(shortenedURL.url);
+  res.status(301).redirect(shortenedURL.url);
 });
 
 app.get("/analysis/:code", function (req, res, next) {
@@ -61,7 +61,7 @@ app.get("/analysis/:code", function (req, res, next) {
     return res.json({ error: true, message: `No matching for ${code}` });
   }
 
-  res.json(shortenedURL);
+  res.status(200).json(shortenedURL);
 });
 
 app.listen(PORT, () => {
