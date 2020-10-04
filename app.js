@@ -61,9 +61,6 @@ app.get("/analysis/:code", function (req, res, next) {
     return res.json({ error: true, message: `No matching for ${code}` });
   }
 
-  (shortenedURL.visitCount = (shortenedURL.visitCount || 0) + 1),
-    shortLinkDB.update(shortenedURL);
-
   res.json(shortenedURL);
 });
 
