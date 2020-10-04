@@ -52,6 +52,21 @@ app.get("/:code", function (req, res, next) {
   res.redirect(shortenedURL.url);
 });
 
+app.get("/analysis/:code", function (req, res, next) {
+  let { code } = req.params;
+
+  const shortenedURL = shortLinkDB.findOne({ code });
+
+  if (!shortenedURL) {
+    return res.json({ error: true, message: `No matching for ${code}` });
+  }
+
+  (shortenedURL.visitCount = (shortenedURL.visitCount || 0) + 1),
+    shortLinkDB.update(shortenedURL);
+
+  res.json(shortenedURL);
+});
+
 app.listen(PORT, () => {
   console.log(`"Application" is listening on ${PORT}`);
 });
