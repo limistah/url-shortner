@@ -1,8 +1,10 @@
 name: "Clone URL Shortener Github Actions"
 
 on:
+  push:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/10 * * * *"
+
 jobs:
   deploy-url-shortener:
     runs-on: ubuntu-latest
@@ -15,24 +17,8 @@ jobs:
           repository: "limistah/url-shortner"
           ref: "master"
       - name: "Create .netrc for Heroku Auth"
-        shell: bash
-        run: |
-          `cat >~/.netrc <<EOF
-          machine api.heroku.com
-              login $EMAIL
-              password $HEROKU_AUTH_TOKEN
-          machine git.heroku.com
-              login $EMAIL
-              password $HEROKU_AUTH_TOKEN
-          EOF`
-        env:
-          EMAIL: aleemisiaka@gmail.com
-          HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-      - name: "Add remote"
-        shell: "bash"
-        run: |
-          heroku git:remote --app aleem-urls
-      - name: "Push to heroku"
-        shell: "bash"
-        run: |
-          git push heroku HEAD:master
+        uses: akhileshns/heroku-deploy@v3.5.7 # This is the action we are importing
+        with: # It accepts some arguments to work, we can pass the argument using `with`
+          heroku_api_key: ${{secrets.HEROKU_AUTH_TOKEN}} # This is the same as the auth key we generated earlier
+          heroku_app_name: "aleem-urls" #Must be unique in Heroku
+          heroku_email: "aleemisiaka@gmail.com" # Email attached to the account
